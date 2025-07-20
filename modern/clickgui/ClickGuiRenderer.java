@@ -42,8 +42,7 @@ public class ClickGuiRenderer implements IMinecraft {
     }
 
     public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
-        this.window = mc.currentScreen instanceof ClickGuiScreen ? 
-                ((ClickGuiScreen)mc.currentScreen).getWindow() : null;
+        this.window = mc.currentScreen instanceof ClickGuiScreen ? ((ClickGuiScreen)mc.currentScreen).getWindow() : null;
         
         if (window == null) return;
 
@@ -62,41 +61,57 @@ public class ClickGuiRenderer implements IMinecraft {
     }
     
     private void renderWindow(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks) {
-        float x = window.getX();
-        float y = window.getY();
-        float width = window.getWidth();
-        float height = window.getHeight();
+            float x = window.getX();
+            float y = window.getY();
+            float width = window.getWidth();
+            float height = window.getHeight();
 
-        float stripeWidth = 40;
-        float stripeX = x;
-        float stripeY = y;
-        float stripeHeight = height;
+            float stripeWidth = 40;
+            float stripeX = x;
+            float stripeY = y;
+            float stripeHeight = height;
 
-        RenderUtils.Render2D.drawRoundedRect(stripeX, stripeY, stripeWidth, stripeHeight,6, ColorUtils.rgba(0,0,0,255));
+            RenderUtils.Render2D.drawRoundedRect(stripeX, stripeY, stripeWidth, stripeHeight,6, ColorUtils.rgba(0,0,0,255));
+            RenderUtils.Render2D.drawRect(stripeX + 1, stripeY, 3, stripeHeight, ColorUtils.rgba(0,0,0,255));
 
-        RenderUtils.Render2D.drawRoundedRect(x, y, width, height, 6, ColorUtils.rgba(backgroundColor.getRed(), backgroundColor.getGreen(), backgroundColor.getBlue(), (int)(backgroundColor.getAlpha() * opening.get())));
+            RenderUtils.Render2D.drawRoundedRect(x, y, width, height, 6, ColorUtils.rgba(backgroundColor.getRed(), backgroundColor.getGreen(), backgroundColor.getBlue(), (int)(backgroundColor.getAlpha() * opening.get())));
 
-        ResourceLocation watermarkTexture = new ResourceLocation("minecraft", "newcode/images/all/logo/watermark.png");
-        float watermarkSize = 32;
-        float watermarkX = x + 2.7f;
-        float watermarkY = y + 2.7f;
+            ResourceLocation watermarkTexture = new ResourceLocation("minecraft", "newcode/images/all/logo/watermark.png");
 
-        RenderUtils.Render2D.drawImage(watermarkTexture, watermarkX, watermarkY, watermarkSize, watermarkSize, ColorUtils.rgba(255,255,255,255));
+            float watermarkSize = 32;
+            float watermarkX = x + 2.7f;
+            float watermarkY = y + 2.7f;
 
-        float iconSize = 20;
-        float iconSpacing = 25;
-        float iconX = x + 9;
+            RenderUtils.Render2D.drawImage(watermarkTexture, watermarkX, watermarkY, watermarkSize, watermarkSize, ColorUtils.rgba(255,255,255,255));
 
-        for (TypeList category :  TypeList.values()) {
-            float iconY = y + 40 + (category.ordinal() * iconSpacing);
+            float separatorWidth = 22;
+            float separatorHeight = 1;
+            float separatorX = x + 8;
+            float separatorY = y + 32;
 
-            String iconName = getCategoryIcon(category);
-            ResourceLocation iconTexture = new ResourceLocation("minecraft", "newcode/images/all/gui/" + iconName);
+            RenderUtils.Render2D.drawRoundedRect(separatorX, separatorY, separatorWidth, separatorHeight, 0.5f, ColorUtils.rgba(100,100,100,150));
 
-            int iconColor = (window.getCurrentCategory() == category) ? ColorUtils.rgba(255,255,255,255) : ColorUtils.rgba(150,150,150,180);
+            float iconSize = 20;
+            float iconSpacing = 25;
+            float iconX = x + 9;
 
-            RenderUtils.Render2D.drawImage(iconTexture, iconX, iconY, iconSize, iconSize, iconColor);
-        }
+            for (TypeList category :  TypeList.values()) {
+                float iconY = y + 40 + (category.ordinal() * iconSpacing);
+
+                String iconName = getCategoryIcon(category);
+                ResourceLocation iconTexture = new ResourceLocation("minecraft", "newcode/images/all/gui/" + iconName);
+
+                int iconColor = (window.getCurrentCategory() == category) ? ColorUtils.rgba(255,255,255,255) : ColorUtils.rgba(150,150,150,180);
+
+                RenderUtils.Render2D.drawImage(iconTexture, iconX, iconY, iconSize, iconSize, iconColor);
+            }
+
+            float moduleAreaX = x + stripeWidth;
+            float moduleAreaY = y + 10;
+            float moduleAreaWidth = stripeWidth * 3;
+            float moduleAreaHeight = height;
+
+            RenderUtils.Render2D.drawRoundedRect(moduleAreaX,moduleAreaY,moduleAreaWidth,moduleAreaHeight,6,ColorUtils.rgba(20,20,25,200));
 
     }
 
