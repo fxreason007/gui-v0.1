@@ -72,7 +72,7 @@ public class ClickGuiRenderer implements IMinecraft {
             float stripeHeight = height;
 
             RenderUtils.Render2D.drawRoundedRect(stripeX, stripeY, stripeWidth, stripeHeight,6, ColorUtils.rgba(0,0,0,255));
-            RenderUtils.Render2D.drawRect(stripeX + 1, stripeY, 3, stripeHeight, ColorUtils.rgba(0,0,0,255));
+            RenderUtils.Render2D.drawRect(stripeX + stripeWidth - 3, stripeY, 3, stripeHeight, ColorUtils.rgba(0,0,0,255));
 
             RenderUtils.Render2D.drawRoundedRect(x, y, width, height, 6, ColorUtils.rgba(backgroundColor.getRed(), backgroundColor.getGreen(), backgroundColor.getBlue(), (int)(backgroundColor.getAlpha() * opening.get())));
 
@@ -107,7 +107,7 @@ public class ClickGuiRenderer implements IMinecraft {
             }
 
             float moduleAreaX = x + stripeWidth;
-            float moduleAreaY = y + 10;
+            float moduleAreaY = y;
             float moduleAreaWidth = stripeWidth * 3;
             float moduleAreaHeight = height;
 
