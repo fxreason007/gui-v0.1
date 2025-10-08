@@ -1,6 +1,4 @@
-# Руководство по GUI для Exalted Client
-
-Это руководство поможет вам понять структуру GUI в Exalted Client и научит вас создавать и модифицировать элементы интерфейса.
+# Типо читай сам
 
 ## Содержание
 
@@ -13,11 +11,11 @@
 
 ## Структура GUI
 
-GUI в Exalted Client построен на основе следующей архитектуры:
+Архитектура:
 
 - `ClickGuiScreen` - главный экран GUI, наследуется от Minecraft Screen
-- `ClickGuiWindow` - окно GUI, содержит основную логику отображения и взаимодействия
-- `ClickGuiRenderer` - отвечает за отрисовку элементов GUI
+- `ClickGuiWindow` - мейн логика отображения и взаимодействия
+- `ClickGuiRenderer` - отрисовка элементов GUI
 - `Rect` - базовый класс для прямоугольных элементов интерфейса
 - `InputWidget` - компонент для ввода текста
 - `Animation` - класс для создания плавных анимаций
@@ -26,7 +24,7 @@ GUI в Exalted Client построен на основе следующей ар
 
 ### ClickGuiScreen
 
-Этот класс является точкой входа для GUI. Он наследуется от `Screen` Minecraft и обрабатывает основные события:
+Этот класс является точкой входа и наследуется от `Screen` Minecraft и обрабатывает основные события:
 
 ```java
 public class ClickGuiScreen extends Screen implements IMinecraft {
@@ -44,12 +42,6 @@ public class ClickGuiScreen extends Screen implements IMinecraft {
 ```
 
 ### ClickGuiWindow
-
-Этот класс представляет собой окно GUI и содержит логику для:
-- Отображения категорий модулей
-- Отображения списка модулей
-- Обработки кликов и скроллинга
-- Перетаскивания окна
 
 ```java
 public class ClickGuiWindow extends Rect implements IMinecraft {
@@ -224,17 +216,4 @@ public Animation setEasing(Easing easing) {
 
 // Использование разных функций плавности
 Animation fadeAnimation = new Animation().setSpeed(300).setEasing(Easing.EASE_OUT_CUBIC);
-Animation scaleAnimation = new Animation().setSpeed(400).setEasing(Easing.EASE_OUT_ELASTIC);
-```
-
-## Заключение
-
-Это базовое руководство по работе с GUI в Exalted Client. Для более глубокого понимания рекомендуется изучить исходный код классов GUI и экспериментировать с различными модификациями.
-
-Помните, что хороший GUI должен быть:
-- Интуитивно понятным
-- Отзывчивым
-- Визуально приятным
-- Функциональным
-
-При разработке GUI старайтесь следовать этим принципам и тестировать ваши изменения на разных разрешениях экрана. 
+Animation scaleAnimation = new Animation().setSpeed(400).setEasing(Easing.); 
